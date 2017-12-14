@@ -1,15 +1,15 @@
-controller
-TetrisBoard
-boardWidth
-boardHeigh
-isFallingFinished
-isStarted
-isPaused
-numLinesRemoved
-currentX
-currentY
-timer
-currentPiece
+## Controller
+TetrisBoard  
+boardWidth  
+boardHeigh  
+isFallingFinished  
+isStarted  
+isPaused  
+numLinesRemoved  
+currentX  
+currentY  
+timer  
+currentPiece  
 map//原board
 
 * gameAction//計時器驅動，要麼tetris往下落一行，要麼是下落完了，那就生成新的方塊
@@ -29,10 +29,10 @@ map//原board
 
 
 
-model
-Tetrominoes{NoShape,I,L,J,O,Z,S,T}
-pieceShape
-coords[][]
+## Model
+Tetrominoes{NoShape,I,L,J,O,Z,S,T}  
+pieceShape  
+coords[][]  
 coordsTable[][]
 
 * shape
@@ -55,9 +55,9 @@ coordsTable[][]
 
 
 
-view
-JLabel statusBar
-TetrisBoard board
+## View
+JLabel statusBar  
+TetrisBoard board  
 
 * init
 * getStatusBar
@@ -67,9 +67,9 @@ TetrisBoard board
 * drawSquare
 
 
-TetrisBoard
-BOARD_WIDTH
-BOARD_HEIGHT
+## TetrisBoard  
+BOARD_WIDTH  
+BOARD_HEIGHT  
 Controller controller
 
 * TetrisBoard
