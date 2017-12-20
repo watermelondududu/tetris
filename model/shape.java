@@ -11,7 +11,7 @@ public class shape {
 	public shape(){
 		coords = new int[4][2];
 		coordsTable = new int[][][]{//8;4;2;
-			{{0,0},{0,0},{0,0},{0,0}},//noshape
+			{{0, 0}, {0, 0}, {0, 0}, {0, 0}},//noshape
 			{{0, -1}, {0, 0}, {-1, 0}, {-1, 1}},//z
             {{0, -1}, {0, 0}, {1, 0}, {1, 1}},//s
             {{0, -1}, {0, 0}, {0, 1}, {0, 2}},//i
@@ -74,6 +74,22 @@ public class shape {
 	}
 	
 	public shape getLeftRotatedPiece(){
+		if(pieceShape==Shapes.O){//正方形就不用旋轉了
+			return this;
+		}
+		
+		shape result = new shape();
+		result.pieceShape=pieceShape;
+		
+		for(int i=0;i<4;i++){
+			result.setX(i, getY(i));//x'=-y
+			result.setY(i, -getX(i));//y'=x
+		}
+		
+		return result;
+	}
+	
+	public shape getRightRotatedPiece(){
 		if(pieceShape==Shapes.O){//正方形就不用旋轉了
 			return this;
 		}
