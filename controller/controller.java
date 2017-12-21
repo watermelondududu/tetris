@@ -20,6 +20,8 @@ public class controller {
 	private boolean isPaused = false;
 	private boolean isFallingFinished = false;
 	
+	private int score = 0;
+	
 	private Timer timer;
 	
 	public controller() {
@@ -42,6 +44,16 @@ public class controller {
 	
 	public boolean isCurrentPieceNoShaped() {
 		return currentShape.getPieceShape() == shape.Shapes.NoShape;
+	}
+	
+	//initial
+	public void start() {
+		
+	}
+	
+	//STATE: pause
+	public void pause() {
+		
 	}
 	
 	//move or not
@@ -92,12 +104,19 @@ public class controller {
 	//automatically move down
 	public void oneLineDown() {
 		if(Move(currentShape, currentX, currentY - 1))
+			//if cannot move, it has reached the bottom
 			Dropped();
 	}
 	
-	//go to bottom at once
+	//go bottom at once
 	public void directDown() {
-		
+		int tempY = currentY;
+		while(tempY > 0) {
+			if(!Move(currentShape, currentX, temp - 1))
+				break;
+			tempY--;
+		}
+		Dropped();
 	}
 	
 	//game control -- fall or finished
@@ -110,9 +129,53 @@ public class controller {
 		}
 	}
 
-	//update squares and test STATES
+	//when got bottom, update squares' position and test its STATES
 	private void Dropped() {
+		for(int i = 0; i < 4; i++) {
+			int tempX = currentX + currentShape.getX(i);
+			int tempY = currentY + currentShape.getY(i);
+			board[(tempY * boardWidth) + tempX] = currentShape.getPieceShape();
+		}
 		
+		testFullLine();
+		
+		if(isFallingFinished())
+			newPiece();
+	}
+	
+	//test and remove full lines
+	private void testFullLine() {
+		//full line numbers
+		int num = 0;
+		//test if Line #i is full
+		for(int i = boardHeight - 1; i >= 0; i--) {
+			boolean flag = true;
+			for(int j = 0; j < boardWidth; j++) {
+				if(getShape(j, i) == shape.Shapes.NoShape) {
+					flag = false;
+					break;
+				}
+			}
+			//if it is full, move above lines down
+			if(flag) {
+				num++;
+				for(int p = i;p < boardHeight - 1; p++) {
+					for(int q = 0; q < boardWidth; q++) {
+						board[(p * boardWidth) + q] = getShape(q, p + 1);
+					}
+				}
+			}
+		}
+		//update
+		if(num > 0) {
+			isFallingFinished = true;
+			score += num;
+			
+			//undeveloped: show score
+			//undeveloped: repaint
+			
+			currentShape.setPieceShape(shape.Shapes.NoShape);
+		}
 	}
 	
 	private shape.Shapes getShape(int x, int y){
