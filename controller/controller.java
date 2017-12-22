@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.Graphics;
+
 import javax.swing.Timer;
 
 import model.shape;
@@ -11,9 +13,10 @@ public class controller {
 	private int currentY = 0;
 
 	//board
-	private shape.Shapes[] board;
+	private shape.Shapes[][] board;
 	private int boardWidth;
 	private int boardHeight;
+	private TetrisBoard tetrisBoard;
 	
 	//assign STATES and initial
 	private boolean isStarted = false;
@@ -24,8 +27,16 @@ public class controller {
 	
 	private Timer timer;
 	
-	public controller() {
-		
+	//constructor function
+	public controller(int boardWidth, int boardHeight, TetrisBoard tetrisBoard) {
+		this.boardHeight = boardHeight;
+		this.boardWidth = boardWidth;
+		this.tetrisBoard = tetrisBoard;
+		currentShape = new shape();
+		timer = new Timer(100, tetrisBoard);
+		timer.start();
+		board = new shape.Shapes[boardWidth][boardHeight];
+		clearShapes();
 	}
 	
 	//start or end
@@ -46,14 +57,48 @@ public class controller {
 		return currentShape.getPieceShape() == shape.Shapes.NoShape;
 	}
 	
-	//initial
+	//initial board
 	public void start() {
-		
+		if(isPaused())
+			return;
+		clearShapes();
+		isStarted = true;
+		isFallingFinished = false;
+		score = 0;
+		newPiece();
+		timer.start();
 	}
 	
 	//STATE: pause
 	public void pause() {
+		if(!isStarted())
+			return;
+		isPaused = !isPaused;
+		if(isPaused()) {
+			timer.stop();
+			
+			//undeveloped: show pause
+		} else {
+			timer.start();
+			
+			//undeveloped: show start
+		}
 		
+		//undeveloped: repaint
+	}
+	
+	// draw squares in board
+	public void paint(Graphics g, int width, int height) {
+		
+	}
+	
+	//clear all shapes
+	private void clearShapes() {
+		for(int i = 0; i < boardWidth; i++) {
+			for(int j = 0; j < boardHeight; j++) {
+				board[i][j] = shape.Shapes.NoShape;
+			}
+		}
 	}
 	
 	//move or not
@@ -112,7 +157,7 @@ public class controller {
 	public void directDown() {
 		int tempY = currentY;
 		while(tempY > 0) {
-			if(!Move(currentShape, currentX, temp - 1))
+			if(!Move(currentShape, currentX, tempY - 1))
 				break;
 			tempY--;
 		}
@@ -134,7 +179,7 @@ public class controller {
 		for(int i = 0; i < 4; i++) {
 			int tempX = currentX + currentShape.getX(i);
 			int tempY = currentY + currentShape.getY(i);
-			board[(tempY * boardWidth) + tempX] = currentShape.getPieceShape();
+			board[tempY][tempX] = currentShape.getPieceShape();
 		}
 		
 		testFullLine();
@@ -161,7 +206,7 @@ public class controller {
 				num++;
 				for(int p = i;p < boardHeight - 1; p++) {
 					for(int q = 0; q < boardWidth; q++) {
-						board[(p * boardWidth) + q] = getShape(q, p + 1);
+						board[p][q] = getShape(q, p + 1);
 					}
 				}
 			}
@@ -179,7 +224,7 @@ public class controller {
 	}
 	
 	private shape.Shapes getShape(int x, int y){
-		return board[(y * boardWidth) + x];
+		return board[y][x];
 	}
 
 	
