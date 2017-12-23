@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.Timer;
 
 import model.shape;
+import model.shape.Shapes;
 
 public class controller {
 	//current shape and its location
@@ -87,8 +88,30 @@ public class controller {
 		//undeveloped: repaint
 	}
 	
-	// draw squares in board
+	// draw all squares in board
 	public void paint(Graphics g, int width, int height) {
+		int numW = width / boardWidth;
+		int numH = height / boardHeight;
+		int topHeight = height - numH * boardHeight;
+		//paint all shapes, or remain others at the bottom
+		for(int i = 0; i < boardHeight; i++) {
+			for(int j = 0; j < boardWidth; j++) {
+				Shapes shape = getShape(j, boardHeight - i - 1);
+				if(shape != Shapes.NoShape) {
+					
+					//undeveloped: drawSquare
+				}
+			}
+		}
+		//paint actual falling piece
+		if(currentShape.getPieceShape() != Shapes.NoShape) {
+			for(int p = 0; p < 4; p++) {
+				int x = currentX + currentShape.getX(p);
+				int y = currentY + currentShape.getY(p);
+				
+				//undeveloped: drawSquare
+			}
+		}
 		
 	}
 	
