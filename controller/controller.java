@@ -1,4 +1,4 @@
-package controller;
+package controllers;
 
 import java.awt.Graphics;
 
@@ -6,6 +6,7 @@ import javax.swing.Timer;
 
 import model.shape;
 import model.shape.Shapes;
+import view.F10615006_DesignView;
 
 public class controller {
 	//current shape and its location
@@ -17,7 +18,7 @@ public class controller {
 	private shape.Shapes[][] board;
 	private int boardWidth;
 	private int boardHeight;
-	private TetrisBoard tetrisBoard;
+	private F10615006_DesignView tetrisBoard;
 	
 	//assign STATES and initial
 	private boolean isStarted = false;
@@ -29,7 +30,7 @@ public class controller {
 	private Timer timer;
 	
 	//constructor function
-	public controller(int boardWidth, int boardHeight, TetrisBoard tetrisBoard) {
+	public controller(int boardWidth, int boardHeight, F10615006_DesignView tetrisBoard) {
 		this.boardHeight = boardHeight;
 		this.boardWidth = boardWidth;
 		this.tetrisBoard = tetrisBoard;
@@ -56,6 +57,10 @@ public class controller {
 	
 	public boolean isCurrentPieceNoShaped() {
 		return currentShape.getPieceShape() == shape.Shapes.NoShape;
+	}
+	
+	public int getScore() {
+		return score;
 	}
 	
 	//initial board
