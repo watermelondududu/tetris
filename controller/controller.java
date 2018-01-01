@@ -94,10 +94,10 @@ public class controller {
 	}
 	
 	// draw all squares in board
-	public void paint(Graphics g, int width, int height) {
-		int numW = width / boardWidth;
-		int numH = height / boardHeight;
-		int topHeight = height - numH * boardHeight;
+	public void paint(Graphics g, double d, double e) {
+		int numW = (int) (d / boardWidth);
+		int numH = (int) (e / boardHeight);
+		int topHeight = (int) (e - numH * boardHeight);
 		//paint all shapes, or remain others at the bottom
 		for(int i = 0; i < boardHeight; i++) {
 			for(int j = 0; j < boardWidth; j++) {
