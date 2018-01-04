@@ -78,3 +78,11 @@ Controller controller
     * getKeyCode
     * p: pause;isPaused
     * 相應操作
+    
+
+## TetrisFrame
+
+## TetrisStartGame
+TetrisStartGame
+
+* main //進入點
