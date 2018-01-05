@@ -58,7 +58,9 @@ public class F10615006_DesignView extends JPanel implements ActionListener {
 		
 		// bottom and right sides of the square are darker
 		// in order to make the square more 3D >_<
-		
+		g.setColor(color.darker());
+		g.drawLine(x + 1, y + squareHeight - 1, x + squareWidth - 1, y + squareHeight - 1);
+        g.drawLine(x + squareWidth - 1, y + squareHeight - 1, x + squareWidth - 1, y + 1);
 	}
 
 	@Override
