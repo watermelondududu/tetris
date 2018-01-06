@@ -5,20 +5,29 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controllers.controller;
 import model.shape;
 import model.shape.Shapes;
+import tetris.TetrisStartGame;
 
 
-public class F10615006_DesignView extends JPanel implements ActionListener {
+public class F10615006_DesignView extends JPanel implements DesignView {
+	
+	final int BOARD_WIDTH = 10;
+	final int BOARD_HEIGHT = 22;
+	private JLabel status;
 	
 	private controller currentController;
 	
-	public F10615006_DesignView() {
+	public F10615006_DesignView(TetrisStartGame parent) {
 		//Constructor
-		
+		setFocusable(true);
+		currentController = new controller(BOARD_WIDTH, BOARD_HEIGHT, this);
+		status = parent.getStatus();
+		addKeyListener(new MyKeyAdapter());
 	}
 
 	public void start() {
@@ -40,9 +49,6 @@ public class F10615006_DesignView extends JPanel implements ActionListener {
 				new Color(102, 204, 204), new Color(218, 170, 0)
 		};
 		Color color = colors[shape.ordinal()];
-		
-		final int BOARD_WIDTH = 10;
-		final int BOARD_HEIGHT = 22;
 		
 		int squareWidth = (int)getSize().getWidth() / BOARD_WIDTH;
 		int squareHeight = (int)getSize().getHeight() / BOARD_HEIGHT;
@@ -67,6 +73,12 @@ public class F10615006_DesignView extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		currentController.gameAction();
+	}
+
+	@Override
+	public void setStatusText(String text) {
+		// TODO Auto-generated method stub
+		status.setText(text);
 	}
 
 }
