@@ -1,4 +1,4 @@
-package controllers;
+package controller;
 
 import java.awt.Graphics;
 
@@ -6,9 +6,11 @@ import javax.swing.Timer;
 
 import model.shape;
 import model.shape.Shapes;
-import view.F10615006_DesignView;
+import view.DesignView;
 
 public class controller {
+	private DesignView designView;
+	
 	//current shape and its location
 	private shape currentShape;
 	private int currentX = 0;
@@ -18,7 +20,7 @@ public class controller {
 	private shape.Shapes[][] board;
 	private int boardWidth;
 	private int boardHeight;
-	private F10615006_DesignView tetrisBoard;
+	private DesignView tetrisBoard;
 	
 	//assign STATES and initial
 	private boolean isStarted = false;
@@ -30,7 +32,7 @@ public class controller {
 	private Timer timer;
 	
 	//constructor function
-	public controller(int boardWidth, int boardHeight, F10615006_DesignView tetrisBoard) {
+	public controller(int boardWidth, int boardHeight, DesignView tetrisBoard) {
 		this.boardHeight = boardHeight;
 		this.boardWidth = boardWidth;
 		this.tetrisBoard = tetrisBoard;
@@ -82,15 +84,12 @@ public class controller {
 		isPaused = !isPaused;
 		if(isPaused()) {
 			timer.stop();
-			
-			//undeveloped: show pause
+			designView.setStatusText("paused");
 		} else {
 			timer.start();
-			
-			//undeveloped: show start
+			designView.setStatusText(String.valueOf(score));
 		}
-		
-		//undeveloped: repaint
+		designView.repaint();
 	}
 	
 	// draw all squares in board
@@ -103,8 +102,8 @@ public class controller {
 			for(int j = 0; j < boardWidth; j++) {
 				Shapes shape = getShape(j, boardHeight - i - 1);
 				if(shape != Shapes.NoShape) {
-					
-					//undeveloped: drawSquare
+					//drawSquare
+					designView.drawSquare(g, j * numW, topHeight + i * numH, shape);
 				}
 			}
 		}
@@ -113,8 +112,8 @@ public class controller {
 			for(int p = 0; p < 4; p++) {
 				int x = currentX + currentShape.getX(p);
 				int y = currentY + currentShape.getY(p);
-				
-				//undeveloped: drawSquare
+				//drawSquare
+				designView.drawSquare(g, x * numW, topHeight + (boardHeight - y - 1) * numH, currentShape.getPieceShape());
 			}
 		}
 		
@@ -152,7 +151,8 @@ public class controller {
 		currentX = X;
 		currentY = Y;
 		
-		//undeveloped: repaint
+		//repaint
+		designView.repaint();
 		
 		return true;
 	}
@@ -168,9 +168,7 @@ public class controller {
 			currentShape.setPieceShape(shape.Shapes.NoShape);
 			timer.stop();
 			isStarted = false;//end
-			
-			//undeveloped: notice "game over"
-			
+			designView.setStatusText("game over");			
 		}
 	}
 	
@@ -243,10 +241,8 @@ public class controller {
 		if(num > 0) {
 			isFallingFinished = true;
 			score += num;
-			
-			//undeveloped: show score
-			//undeveloped: repaint
-			
+			designView.setStatusText(String.valueOf(score));
+			designView.repaint();
 			currentShape.setPieceShape(shape.Shapes.NoShape);
 		}
 	}
