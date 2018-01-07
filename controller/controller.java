@@ -7,6 +7,7 @@ import javax.swing.Timer;
 import model.shape;
 import model.shape.Shapes;
 import view.DesignView;
+import view.ShowView;
 
 public class controller {	
 	//current shape and its location
@@ -18,7 +19,7 @@ public class controller {
 	private shape.Shapes[] board;
 	private int boardWidth;
 	private int boardHeight;
-	private DesignView designView;
+	private ShowView designView;
 	
 	//assign STATES and initial
 	private boolean isStarted = false;
@@ -30,7 +31,7 @@ public class controller {
 	private Timer timer;
 	
 	//constructor function
-	public controller(int boardWidth, int boardHeight, DesignView tetrisBoard) {
+	public controller(int boardWidth, int boardHeight, ShowView tetrisBoard) {
 		this.boardHeight = boardHeight;
 		this.boardWidth = boardWidth;
 		this.designView = tetrisBoard;
