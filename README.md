@@ -80,8 +80,6 @@ Controller controller
     * 相應操作
     
 
-## TetrisFrame
-
 ## TetrisStartGame
 TetrisStartGame
 
