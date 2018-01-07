@@ -9,18 +9,18 @@ import javax.swing.*;
 import controller.controller;
 
 public class F10615006_DesignView extends JFrame implements DesignView {
-	private JLabel status;
-	private ShowView View;
-	private controller currentController;
-	
-	public F10615006_DesignView() {
-		//create a board and start
-		status = new JLabel("Paused");
-		View = new ShowView(this);
-		currentController = View.getController();
-	}
-	
-	public void init() {
+        private JLabel status;
+        private ShowView View;
+        private controller currentController;
+        
+        public F10615006_DesignView() {
+                //create a board and start
+                status = new JLabel("Terminated");
+                View = new ShowView(this);
+                currentController = View.getController();
+        }
+        
+        public void init() {
         Container contentPane = getContentPane();
         
         add(View);
@@ -81,23 +81,23 @@ public class F10615006_DesignView extends JFrame implements DesignView {
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
-	}
-	
-	public JLabel getStatus() {
-		return status;
-	}
-	
-	private class StartButtonHandler implements ActionListener {
+        }
+        
+        public JLabel getStatus() {
+                return status;
+        }
+        
+        private class StartButtonHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-//        	if(!currentController.isStarted())
-        		currentController.start();
+//              if(!currentController.isStarted())
+                        currentController.start();
         }
         }
-	
-	private class PauseButtonHandler implements ActionListener {
+        
+        private class PauseButtonHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-        	if(currentController.isStarted())
-        		currentController.pause();
+                if(currentController.isStarted())
+                        currentController.pause();
         }
         }
 }
