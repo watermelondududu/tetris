@@ -1,14 +1,15 @@
 package view;
 
-import java.awt.Graphics;
-import java.awt.event.ActionListener;
+import java.awt.Component;
+import javax.swing.JLabel;
 
-import model.shape;
+public interface DesignView {
 
-public interface DesignView extends ActionListener {
-	abstract void setStatusText(String text);
+	JLabel getStatus();
 
-	abstract void repaint();
-	
-	abstract void drawSquare(Graphics g, int x, int y, shape.Shapes shape);
+	void init();
+
+	//in order to meet the demand of main, implemented in JFrame
+	void setLocationRelativeTo(Component C);
+
 }
