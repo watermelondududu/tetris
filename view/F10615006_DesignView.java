@@ -80,7 +80,7 @@ public class F10615006_DesignView extends JFrame implements DesignView {
         setSize(500, 650);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
+        setTitle("TetrisGame");
         }
         
         public JLabel getStatus() {
