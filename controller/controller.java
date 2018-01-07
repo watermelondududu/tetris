@@ -8,19 +8,17 @@ import model.shape;
 import model.shape.Shapes;
 import view.DesignView;
 
-public class controller {
-	private DesignView designView;
-	
+public class controller {	
 	//current shape and its location
 	private shape currentShape;
 	private int currentX = 0;
 	private int currentY = 0;
 
 	//board
-	private shape.Shapes[][] board;
+	private shape.Shapes[] board;
 	private int boardWidth;
 	private int boardHeight;
-	private DesignView tetrisBoard;
+	private DesignView designView;
 	
 	//assign STATES and initial
 	private boolean isStarted = false;
@@ -35,11 +33,11 @@ public class controller {
 	public controller(int boardWidth, int boardHeight, DesignView tetrisBoard) {
 		this.boardHeight = boardHeight;
 		this.boardWidth = boardWidth;
-		this.tetrisBoard = tetrisBoard;
+		this.designView = tetrisBoard;
 		currentShape = new shape();
-		timer = new Timer(100, tetrisBoard);
+		timer = new Timer(400, tetrisBoard);
 		timer.start();
-		board = new shape.Shapes[boardWidth][boardHeight];
+		board = new shape.Shapes[boardWidth * boardHeight];
 		clearShapes();
 	}
 	
@@ -69,10 +67,10 @@ public class controller {
 	public void start() {
 		if(isPaused())
 			return;
-		clearShapes();
 		isStarted = true;
 		isFallingFinished = false;
 		score = 0;
+		clearShapes();
 		newPiece();
 		timer.start();
 	}
@@ -96,7 +94,7 @@ public class controller {
 	public void paint(Graphics g, double d, double e) {
 		int numW = (int) (d / boardWidth);
 		int numH = (int) (e / boardHeight);
-		int topHeight = (int) (e - numH * boardHeight);
+		int topHeight = (int) e - numH * boardHeight;
 		//paint all shapes, or remain others at the bottom
 		for(int i = 0; i < boardHeight; i++) {
 			for(int j = 0; j < boardWidth; j++) {
@@ -111,7 +109,7 @@ public class controller {
 		if(currentShape.getPieceShape() != Shapes.NoShape) {
 			for(int p = 0; p < 4; p++) {
 				int x = currentX + currentShape.getX(p);
-				int y = currentY + currentShape.getY(p);
+				int y = currentY - currentShape.getY(p);
 				//drawSquare
 				designView.drawSquare(g, x * numW, topHeight + (boardHeight - y - 1) * numH, currentShape.getPieceShape());
 			}
@@ -121,10 +119,8 @@ public class controller {
 	
 	//clear all shapes
 	private void clearShapes() {
-		for(int i = 0; i < boardWidth; i++) {
-			for(int j = 0; j < boardHeight; j++) {
-				board[i][j] = shape.Shapes.NoShape;
-			}
+		for(int i = 0; i < boardWidth * boardHeight; i++) {
+				board[i] = shape.Shapes.NoShape;
 		}
 	}
 	
@@ -174,7 +170,7 @@ public class controller {
 	
 	//automatically move down
 	public void oneLineDown() {
-		if(Move(currentShape, currentX, currentY - 1))
+		if(!Move(currentShape, currentX, currentY - 1))
 			//if cannot move, it has reached the bottom
 			Dropped();
 	}
@@ -204,13 +200,13 @@ public class controller {
 	private void Dropped() {
 		for(int i = 0; i < 4; i++) {
 			int tempX = currentX + currentShape.getX(i);
-			int tempY = currentY + currentShape.getY(i);
-			board[tempY][tempX] = currentShape.getPieceShape();
+			int tempY = currentY - currentShape.getY(i);
+			board[(tempY * boardWidth) + tempX] = currentShape.getPieceShape();
 		}
 		
 		testFullLine();
 		
-		if(isFallingFinished())
+		if(!isFallingFinished())
 			newPiece();
 	}
 	
@@ -232,7 +228,7 @@ public class controller {
 				num++;
 				for(int p = i;p < boardHeight - 1; p++) {
 					for(int q = 0; q < boardWidth; q++) {
-						board[p][q] = getShape(q, p + 1);
+						board[p * boardWidth + q] = getShape(q, p + 1);
 					}
 				}
 			}
@@ -242,13 +238,13 @@ public class controller {
 			isFallingFinished = true;
 			score += num;
 			designView.setStatusText(String.valueOf(score));
-			designView.repaint();
 			currentShape.setPieceShape(shape.Shapes.NoShape);
+			designView.repaint();
 		}
 	}
 	
 	private shape.Shapes getShape(int x, int y){
-		return board[y][x];
+		return board[y * boardWidth + x];
 	}
 
 	
