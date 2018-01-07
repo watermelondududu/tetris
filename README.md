@@ -66,6 +66,9 @@ TetrisBoard board
 * squareHeight
 * drawSquare
 
+## DesignView
+宣告模板的interface
+
 
 ## TetrisBoard  
 BOARD_WIDTH  
