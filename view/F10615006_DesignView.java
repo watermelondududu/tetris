@@ -27,7 +27,7 @@ public class F10615006_DesignView extends JPanel implements DesignView {
 		setFocusable(true);
 		currentController = new controller(BOARD_WIDTH, BOARD_HEIGHT, this);
 		status = parent.getStatus();
-		addKeyListener(new MyKeyAdapter());
+		addKeyListener(new MyKeyAdapter(currentController));
 	}
 
 	public void start() {
