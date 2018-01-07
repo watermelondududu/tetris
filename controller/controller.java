@@ -37,7 +37,7 @@ public class controller {
 		this.designView = tetrisBoard;
 		currentShape = new shape();
 		timer = new Timer(400, tetrisBoard);
-		timer.start();
+		
 		board = new shape.Shapes[boardWidth * boardHeight];
 		clearShapes();
 	}
@@ -68,12 +68,14 @@ public class controller {
 	public void start() {
 		if(isPaused())
 			return;
+		timer.start();
 		isStarted = true;
 		isFallingFinished = false;
 		score = 0;
 		clearShapes();
 		newPiece();
 		timer.start();
+		designView.setStatusText("Your score: "+ String.valueOf(score));
 	}
 	
 	//STATE: pause
@@ -86,7 +88,7 @@ public class controller {
 			designView.setStatusText("paused");
 		} else {
 			timer.start();
-			designView.setStatusText(String.valueOf(score));
+			designView.setStatusText("Your score: "+ String.valueOf(score));
 		}
 		designView.repaint();
 	}
@@ -238,7 +240,7 @@ public class controller {
 		if(num > 0) {
 			isFallingFinished = true;
 			score += num;
-			designView.setStatusText(String.valueOf(score));
+			designView.setStatusText("Your score: "+ String.valueOf(score));
 			currentShape.setPieceShape(shape.Shapes.NoShape);
 			designView.repaint();
 		}
