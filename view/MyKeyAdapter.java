@@ -3,10 +3,14 @@ package view;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import controllers.controller;
+import controller.controller;
 
 public class MyKeyAdapter extends KeyAdapter {
-	public void keyPressed(KeyEvent e, controller currentController) {
+	controller currentController;
+	public MyKeyAdapter(controller Controller){
+		this.currentController = Controller;
+	}
+	public void keyPressed(KeyEvent e) {
 		if(!currentController.isStarted() || currentController.isCurrentPieceNoShaped()) {
 			return;
 		}
@@ -29,9 +33,8 @@ public class MyKeyAdapter extends KeyAdapter {
 		 * <-: move left
 		 * ->: move right
 		 * ↓: one line down
-		 * 'A'/'a': rotate left
-		 * 'D'/'d': rotate right
-		 * 'S'/'s': direct down
+		 * ↑: rotate
+		 * 'A'/'a': direct down
 		 */
 		if (Key == KeyEvent.VK_LEFT) {
 			currentController.moveLeft();
@@ -42,16 +45,10 @@ public class MyKeyAdapter extends KeyAdapter {
 		else if(Key == KeyEvent.VK_DOWN) {
 			currentController.oneLineDown();
 		}
-		else if(Key == KeyEvent.VK_SPACE) {
-			currentController.directDown();
-		}
-		else if(Key == 'A' || Key == 'a') {
+		else if(Key == KeyEvent.VK_UP) {
 			currentController.rotateLeft();
 		}
-		else if(Key =='D' || Key == 'd') {
-			currentController.rorateRight();
-		}
-		else if(Key == 'S' || Key == 's') {
+		else if(Key == 'D' || Key == 'd') {
 			currentController.directDown();
 		}
 	}

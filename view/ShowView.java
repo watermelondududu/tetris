@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import controllers.controller;
+import controller.controller;
 import model.shape;
 
 
@@ -30,10 +30,18 @@ public class ShowView extends JPanel implements ActionListener {
 		currentController.start();
 	}
 	
+	public void pause() {
+		currentController.pause();
+	}
+	
 	// paint
 	public void paint(Graphics g) {
 		super.paint(g);
 		currentController.paint(g, getSize().getWidth(), getSize().getHeight());
+	}
+	
+	public controller getController() {
+		return currentController;
 	}
 	
 	// draw this square
