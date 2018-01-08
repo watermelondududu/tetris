@@ -7,11 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import controller.controller;
+import model.shape;
 
 public class F10615006_DesignView extends JFrame implements DesignView {
         private JLabel status;
         private ShowView View;
         private controller currentController;
+    	final int BOARD_WIDTH = 10;
+    	final int BOARD_HEIGHT = 22;
         
         public F10615006_DesignView() {
                 //create a board and start
@@ -99,5 +102,14 @@ public class F10615006_DesignView extends JFrame implements DesignView {
                 if(currentController.isStarted())
                         currentController.pause();
         }
+        }
+        
+        public 	Color[] getColors() {
+    		Color tmp[] = { new Color(0, 0, 0), new Color(204, 102, 102), 
+    				new Color(102, 204, 102), new Color(102, 102, 204), 
+    				new Color(204, 204, 102), new Color(204, 102, 204),
+    				new Color(102, 204, 204), new Color(218, 170, 0)
+    		};
+    		return tmp;
         }
 }
