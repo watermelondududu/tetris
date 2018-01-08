@@ -53,6 +53,7 @@ public class ShowView extends JPanel implements ActionListener {
 	// draw this square
 	public void drawSquare(Graphics g, int x, int y, shape.Shapes shape) {
 		DesignView tmp = new F10615006_DesignView();
+		//DesignView tmp = new B10413040_DesignView(layoutStyle);
 		Color[] colors = new Color[8];
 		
 		//call getColors to fill colors of squares in the array colors[].
