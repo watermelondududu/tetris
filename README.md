@@ -74,7 +74,7 @@ TetrisBoard board
 * drawSquare
 
 ## DesignView
-宣告模板的interface
+UI設計模板的interface
 
 
 ## TetrisBoard  
