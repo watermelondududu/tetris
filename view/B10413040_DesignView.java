@@ -126,10 +126,10 @@ public class B10413040_DesignView extends JFrame implements DesignView {
         		rdbtnDark.setSelected(false);
         		rdbtnBright.setSelected(true);
         		rdbtnColorful.setSelected(false);
-                panelForStatus.setBackground(new Color(250, 250, 250));
+                panelForStatus.setBackground(new Color(245, 245, 245));
                 status.setForeground(new Color(0, 0, 0));
                 lblImg.setEnabled(false);
-                View.setBackground(new Color(250, 250, 250));
+                View.setBackground(new Color(245, 245, 245));
                 View.setLayoutColor(layoutStyle);
         	}
         });
@@ -145,7 +145,8 @@ public class B10413040_DesignView extends JFrame implements DesignView {
                 panelForStatus.setBackground(new Color(255, 255, 200));
                 status.setForeground(new Color(240, 105, 35));
                 lblImg.setEnabled(true);
-                View.setBackground(new Color(255, 125, 125, 0));
+                View.setBackground(new Color(255, 255, 200, 0));
+                //View.setBackground(new Color(255, 255, 200));
                 View.setLayoutColor(layoutStyle);
         	}
         });
@@ -212,7 +213,7 @@ public class B10413040_DesignView extends JFrame implements DesignView {
     		tmp[2] = new Color(0, 170, 50);
     		tmp[3] = new Color(22, 62, 152);
     		tmp[4] = new Color(0, 210, 154);
-    		tmp[5] = new Color(156, 89, 213);
+    		tmp[5] = new Color(176, 89, 235);
     		tmp[6] = new Color(255, 216, 0);
     		tmp[7] = new Color(200, 0, 0);
     	}
