@@ -43,6 +43,8 @@ public class B10413040_DesignView extends JFrame implements DesignView {
         View.setBackground(new Color(50, 50, 50));
         getContentPane().add(View);
         
+        View.setDesign(this);
+        
         View.setLayoutColor(layoutStyle);
         
         JLabel lblImg = new JLabel("img");
@@ -171,6 +173,10 @@ public class B10413040_DesignView extends JFrame implements DesignView {
         
 	}
 
+	public DesignView getDesign() {
+		return this;
+}
+	
 	public B10413040_DesignView(String layout) {
 		layoutStyle = layout;
 	}

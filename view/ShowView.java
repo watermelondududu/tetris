@@ -18,6 +18,8 @@ public class ShowView extends JPanel implements ActionListener {
 	private String layoutStyle;
 	private Color colors[];
 	
+	private DesignView personaldesign;
+	
 	private controller currentController;
 	
 	public ShowView(DesignView parent) {
@@ -52,8 +54,8 @@ public class ShowView extends JPanel implements ActionListener {
 		layoutStyle = s;
 	}
 	
-	public void setColors(Color personalColors[]) {
-		this.colors = personalColors;
+	public void setDesign(DesignView design) {
+		this.personaldesign = design;
 	}
 	
 	// draw this square
@@ -64,11 +66,14 @@ public class ShowView extends JPanel implements ActionListener {
 //		
 //		//call getColors to fill colors of squares in the array colors[].
 //		colors = tmp.getColors();
-		Color colors[] = { new Color(0, 0, 0), new Color(204, 102, 102), 
-				new Color(102, 204, 102), new Color(102, 102, 204), 
-				new Color(204, 204, 102), new Color(204, 102, 204),
-				new Color(102, 204, 204), new Color(218, 170, 0)
-		};
+//		Color colors[] = { new Color(0, 0, 0), new Color(204, 102, 102), 
+//				new Color(102, 204, 102), new Color(102, 102, 204), 
+//				new Color(204, 204, 102), new Color(204, 102, 204),
+//				new Color(102, 204, 204), new Color(218, 170, 0)
+//		};
+		
+		colors = personaldesign.getColors();
+		
 		Color color = colors[shape.ordinal()];
     		
     	int squareWidth = (int)getSize().getWidth() / BOARD_WIDTH;

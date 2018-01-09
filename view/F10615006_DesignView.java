@@ -20,8 +20,12 @@ public class F10615006_DesignView extends JFrame implements DesignView {
                 //create a board and start
                 status = new JLabel("Terminated");
                 View = new ShowView(this);
-                View.setColors(getColors());
+                View.setDesign(this);
                 currentController = View.getController();
+        }
+        
+        public DesignView getDesign() {
+        		return this;
         }
         
         public void init() {
@@ -115,4 +119,5 @@ public class F10615006_DesignView extends JFrame implements DesignView {
     		};
     		return tmp;
         }
+
 }

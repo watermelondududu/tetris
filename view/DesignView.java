@@ -20,4 +20,5 @@ public interface DesignView {
 	//a function to fill all colors of squares into an array.
 	Color[] getColors();
 
+	DesignView getDesign();
 }
