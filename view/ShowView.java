@@ -16,6 +16,7 @@ public class ShowView extends JPanel implements ActionListener {
 	final int BOARD_HEIGHT = 22;
 	private JLabel status;
 	private String layoutStyle;
+	private Color colors[];
 	
 	private controller currentController;
 	
@@ -25,6 +26,7 @@ public class ShowView extends JPanel implements ActionListener {
 		currentController = new controller(BOARD_WIDTH, BOARD_HEIGHT, this);
 		status = parent.getStatus();
 		addKeyListener(new MyKeyAdapter(currentController));
+		colors = new Color[8];
 	}
 
 	public void start() {
@@ -50,15 +52,24 @@ public class ShowView extends JPanel implements ActionListener {
 		layoutStyle = s;
 	}
 	
+	public void setColors(Color personalColors[]) {
+		this.colors = personalColors;
+	}
+	
 	// draw this square
 	public void drawSquare(Graphics g, int x, int y, shape.Shapes shape) {
-		DesignView tmp = new F10615006_DesignView();
-		//DesignView tmp = new B10413040_DesignView(layoutStyle);
-		Color[] colors = new Color[8];
-		
-		//call getColors to fill colors of squares in the array colors[].
-		colors = tmp.getColors();
-    	Color color = colors[shape.ordinal()];
+//		DesignView tmp = new F10615006_DesignView();
+//		DesignView tmp = new B10413040_DesignView(layoutStyle);
+//		Color[] colors = new Color[8];
+//		
+//		//call getColors to fill colors of squares in the array colors[].
+//		colors = tmp.getColors();
+		Color colors[] = { new Color(0, 0, 0), new Color(204, 102, 102), 
+				new Color(102, 204, 102), new Color(102, 102, 204), 
+				new Color(204, 204, 102), new Color(204, 102, 204),
+				new Color(102, 204, 204), new Color(218, 170, 0)
+		};
+		Color color = colors[shape.ordinal()];
     		
     	int squareWidth = (int)getSize().getWidth() / BOARD_WIDTH;
     	int squareHeight = (int)getSize().getHeight() / BOARD_HEIGHT;

@@ -13,13 +13,14 @@ public class F10615006_DesignView extends JFrame implements DesignView {
         private JLabel status;
         private ShowView View;
         private controller currentController;
-    	final int BOARD_WIDTH = 10;
-    	final int BOARD_HEIGHT = 22;
+        final int BOARD_WIDTH = 10;
+        final int BOARD_HEIGHT = 22;
         
         public F10615006_DesignView() {
                 //create a board and start
                 status = new JLabel("Terminated");
                 View = new ShowView(this);
+                View.setColors(getColors());
                 currentController = View.getController();
         }
         
@@ -32,6 +33,7 @@ public class F10615006_DesignView extends JFrame implements DesignView {
         //panel1 contains a status bar
         JPanel panel1 = new JPanel();
         panel1.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        panel1.setBackground(Color.ORANGE);
         panel1.add(status, BorderLayout.NORTH);
         contentPane.add(panel1, BorderLayout.NORTH);
         
@@ -55,6 +57,7 @@ public class F10615006_DesignView extends JFrame implements DesignView {
         JPanel panel3 = new JPanel(new GridLayout(20, 1));
         panel3.setPreferredSize(new Dimension(200, 450));
         panel3.setBorder(BorderFactory.createEtchedBorder());
+        panel3.setBackground(Color.CYAN);
         JLabel label0 = new JLabel();
         JLabel label1 = new JLabel("  Instructions" + '\n');
         label1.setFont(new Font("Dialog", 1, 20));
@@ -104,7 +107,7 @@ public class F10615006_DesignView extends JFrame implements DesignView {
         }
         }
         
-        public 	Color[] getColors() {
+        public Color[] getColors() {
     		Color tmp[] = { new Color(0, 0, 0), new Color(204, 102, 102), 
     				new Color(102, 204, 102), new Color(102, 102, 204), 
     				new Color(204, 204, 102), new Color(204, 102, 204),
