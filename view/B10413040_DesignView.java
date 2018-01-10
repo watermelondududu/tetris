@@ -1,9 +1,6 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,9 +15,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.FlowLayout;
-import javax.swing.ImageIcon;
 
 public class B10413040_DesignView extends JFrame implements DesignView {
 
@@ -28,8 +23,6 @@ public class B10413040_DesignView extends JFrame implements DesignView {
     private JLabel status;
     private ShowView View;
     private controller currentController;
-	final int BOARD_WIDTH = 10;
-	final int BOARD_HEIGHT = 22;
 	private String layoutStyle = "dark";
 
 	public B10413040_DesignView() {
@@ -44,14 +37,6 @@ public class B10413040_DesignView extends JFrame implements DesignView {
         getContentPane().add(View);
         
         View.setDesign(this);
-        
-        View.setLayoutColor(layoutStyle);
-        
-        JLabel lblImg = new JLabel("img");
-        lblImg.setEnabled(false);
-        lblImg.setIcon(new ImageIcon(this.getClass().getResource("hey.jpg")));
-        lblImg.setBounds(0, 30, 200, 400);
-        getContentPane().add(lblImg);
         
         JPanel panelForStatus = new JPanel();
         FlowLayout flowLayout = (FlowLayout) panelForStatus.getLayout();
@@ -104,19 +89,19 @@ public class B10413040_DesignView extends JFrame implements DesignView {
         
         JRadioButton rdbtnDark = new JRadioButton("Dark", true);
         JRadioButton rdbtnBright = new JRadioButton("Bright", false);
-        JRadioButton rdbtnColorful = new JRadioButton("Colorful", false);
+        JRadioButton rdbtnCold = new JRadioButton("Cold", false);
+        JRadioButton rdbtnWarm = new JRadioButton("Warm", false);
         
         rdbtnDark.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		layoutStyle = "dark";
         		rdbtnDark.setSelected(true);
         		rdbtnBright.setSelected(false);
-        		rdbtnColorful.setSelected(false);
+        		rdbtnCold.setSelected(false);
+        		rdbtnWarm.setSelected(false);
                 panelForStatus.setBackground(new Color(50, 50, 50));
                 status.setForeground(new Color(240, 240, 240));
-                lblImg.setEnabled(false);
                 View.setBackground(new Color(50, 50, 50));
-                View.setLayoutColor(layoutStyle);
         	}
         });
         mnLayoutStyle.add(rdbtnDark);
@@ -127,32 +112,45 @@ public class B10413040_DesignView extends JFrame implements DesignView {
         		layoutStyle = "bright";
         		rdbtnDark.setSelected(false);
         		rdbtnBright.setSelected(true);
-        		rdbtnColorful.setSelected(false);
+        		rdbtnCold.setSelected(false);
+        		rdbtnWarm.setSelected(false);
                 panelForStatus.setBackground(new Color(245, 245, 245));
                 status.setForeground(new Color(0, 0, 0));
-                lblImg.setEnabled(false);
                 View.setBackground(new Color(245, 245, 245));
-                View.setLayoutColor(layoutStyle);
         	}
         });
         mnLayoutStyle.add(rdbtnBright);
         
         
-        rdbtnColorful.addActionListener(new ActionListener() {
+        rdbtnCold.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		layoutStyle = "colorful";
+        		layoutStyle = "cold";
         		rdbtnDark.setSelected(false);
         		rdbtnBright.setSelected(false);
-        		rdbtnColorful.setSelected(true);
-                panelForStatus.setBackground(new Color(255, 255, 200));
-                status.setForeground(new Color(240, 105, 35));
-                lblImg.setEnabled(true);
-                View.setBackground(new Color(255, 255, 200, 0));
-                //View.setBackground(new Color(255, 255, 200));
-                View.setLayoutColor(layoutStyle);
+        		rdbtnCold.setSelected(true);
+        		rdbtnWarm.setSelected(false);
+                panelForStatus.setBackground(new Color(0x285e83));
+                status.setForeground(new Color(0xc4f3ff));
+                View.setBackground(new Color(0x285e83));
         	}
         });
-        mnLayoutStyle.add(rdbtnColorful);
+        mnLayoutStyle.add(rdbtnCold);
+        
+        
+        rdbtnWarm.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		layoutStyle = "warm";
+        		rdbtnDark.setSelected(false);
+        		rdbtnBright.setSelected(false);
+        		rdbtnCold.setSelected(false);
+        		rdbtnWarm.setSelected(true);
+                panelForStatus.setBackground(new Color(0x832844));
+                status.setForeground(new Color(0xffffff));
+                View.setBackground(new Color(0x832844));
+        	}
+        });
+        mnLayoutStyle.add(rdbtnWarm);
+        
         
         JMenu mnHelp = new JMenu("Help");
         menuBar.add(mnHelp);
@@ -160,11 +158,16 @@ public class B10413040_DesignView extends JFrame implements DesignView {
         JMenuItem mntmHowToPlay = new JMenuItem("How To Play");
         mntmHowToPlay.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		currentController.pause();
+        		boolean uesrPressedThis = false;
+        		if (!currentController.isPaused()) {
+        			currentController.pause();
+        			uesrPressedThis = true;
+        		}
         		JOptionPane.showMessageDialog(null, "Press \"up\" to rotate.\nPress \"left/right\" to move.\n"
         				+ "Press \"down\" to drop one line\nPress \"D\" to drop down to the bottom.\n"
-        				+ "Press \"P\" to pause game.", "Help", JOptionPane.PLAIN_MESSAGE);
-        		currentController.pause();
+        				+ "Press \"P\" to pause game.", "How To Play", JOptionPane.PLAIN_MESSAGE);
+        		if (currentController.isPaused() && uesrPressedThis == true)
+        			currentController.pause();	
         	}
         });
         mnHelp.add(mntmHowToPlay);
@@ -205,12 +208,12 @@ public class B10413040_DesignView extends JFrame implements DesignView {
     	{
     		tmp[0] = new Color(0, 0, 0);
     		tmp[1] = new Color(230, 230, 230);
-    		tmp[2] = new Color(240, 50, 100);
-    		tmp[3] = new Color(255, 250, 95);
+    		tmp[2] = new Color(240, 70, 120);
+    		tmp[3] = new Color(255, 250, 120);
     		tmp[4] = new Color(125, 190, 250);
-    		tmp[5] = new Color(255, 120, 10);
-    		tmp[6] = new Color(90, 240, 150);
-    		tmp[7] = new Color(130, 50, 250);
+    		tmp[5] = new Color(255, 148, 61);
+    		tmp[6] = new Color(113, 240, 163);
+    		tmp[7] = new Color(161, 102, 250);
     	}
     	if (layoutStyle.equals("bright"))
     	{
@@ -223,16 +226,27 @@ public class B10413040_DesignView extends JFrame implements DesignView {
     		tmp[6] = new Color(255, 216, 0);
     		tmp[7] = new Color(200, 0, 0);
     	}
-    	if (layoutStyle.equals("colorful"))
+    	if (layoutStyle.equals("cold"))
     	{
     		tmp[0] = new Color(0, 0, 0);
-    		tmp[1] = new Color(255, 0, 0);
-    		tmp[2] = new Color(0, 255, 0);
-    		tmp[3] = new Color(0, 0, 255);
-    		tmp[4] = new Color(255, 255, 0);
-    		tmp[5] = new Color(255, 0, 255);
-    		tmp[6] = new Color(0, 255, 255);
-    		tmp[7] = new Color(255, 0, 100);
+    		tmp[1] = new Color(0x7b8bff);
+    		tmp[2] = new Color(0x64f6e4);
+    		tmp[3] = new Color(0x4eb2ff);
+    		tmp[4] = new Color(0x2879ff);
+    		tmp[5] = new Color(0x001ab9);
+    		tmp[6] = new Color(0x00b4ce);
+    		tmp[7] = new Color(0xececec);
+    	}
+    	if (layoutStyle.equals("warm"))
+    	{
+    		tmp[0] = new Color(0, 0, 0);
+    		tmp[1] = new Color(0xce0054);
+    		tmp[2] = new Color(0xffa87b);
+    		tmp[3] = new Color(0xf664c3);
+    		tmp[4] = new Color(0xff4e5f);
+    		tmp[5] = new Color(0xff6c00);
+    		tmp[6] = new Color(0xffb0bc);
+    		tmp[7] = new Color(0xc74a0d);
     	}
     	
 		return tmp;

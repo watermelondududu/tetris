@@ -15,7 +15,6 @@ public class ShowView extends JPanel implements ActionListener {
 	final int BOARD_WIDTH = 10;
 	final int BOARD_HEIGHT = 22;
 	private JLabel status;
-	private String layoutStyle;
 	private Color colors[];
 	
 	private DesignView personaldesign;
@@ -47,11 +46,6 @@ public class ShowView extends JPanel implements ActionListener {
 	
 	public controller getController() {
 		return currentController;
-	}
-	
-	public void setLayoutColor(String s)
-	{
-		layoutStyle = s;
 	}
 	
 	public void setDesign(DesignView design) {

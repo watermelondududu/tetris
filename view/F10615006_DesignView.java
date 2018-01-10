@@ -13,8 +13,6 @@ public class F10615006_DesignView extends JFrame implements DesignView {
         private JLabel status;
         private ShowView View;
         private controller currentController;
-        final int BOARD_WIDTH = 10;
-        final int BOARD_HEIGHT = 22;
         
         public F10615006_DesignView() {
                 //create a board and start
