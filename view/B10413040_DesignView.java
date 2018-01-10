@@ -165,7 +165,7 @@ public class B10413040_DesignView extends JFrame implements DesignView {
         		}
         		JOptionPane.showMessageDialog(null, "Press \"up\" to rotate.\nPress \"left/right\" to move.\n"
         				+ "Press \"down\" to drop one line\nPress \"D\" to drop down to the bottom.\n"
-        				+ "Press \"P\" to pause game.", "How To Play", JOptionPane.PLAIN_MESSAGE);
+        				+ "Press \"P\" to pause game.\nPress \"R\" to restart game.", "How To Play", JOptionPane.PLAIN_MESSAGE);
         		if (currentController.isPaused() && uesrPressedThis == true)
         			currentController.pause();	
         	}

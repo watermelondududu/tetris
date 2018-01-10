@@ -24,18 +24,23 @@ public class MyKeyAdapter extends KeyAdapter {
 			currentController.pause();
 			return;
 		}
+		if(Key == 'r' || Key == 'R') {
+			currentController.start();
+			return;
+		}
 		
 		if(currentController.isPaused()) {
 			return;
 		}
-		
+
 		/*
 		 * <-: move left
 		 * ->: move right
-		 * â†“: one line down
-		 * â†‘: rotate
+		 * ¡õ: one line down
+		 * ¡ô: rotate
 		 * 'A'/'a': direct down
 		 */
+
 		if (Key == KeyEvent.VK_LEFT) {
 			currentController.moveLeft();
 		}
