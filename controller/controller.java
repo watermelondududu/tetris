@@ -167,7 +167,7 @@ public class controller {
 			currentShape.setPieceShape(shape.Shapes.NoShape);
 			timer.stop();
 			isStarted = false;//end
-			designView.setStatusText("game over");			
+			designView.setStatusText("Game over");			
 		}
 	}
 	
