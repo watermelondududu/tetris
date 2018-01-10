@@ -1,8 +1,7 @@
 # 提示：
 若要替換成自己的DesignView，
-請修改以下兩組宣告：
+請修改以下宣告：
 1. tetris > TetrisStartGame.java > main > DesignView game = new 你的學號_DesignView();
-2. view > ShowView.java > drawSquare > DesignView tmp = new 你的學號_DesignView();
 
 
 ## Controller
