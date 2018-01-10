@@ -229,21 +229,21 @@ public class B10413040_DesignView extends JFrame implements DesignView {
     	if (layoutStyle.equals("cold"))
     	{
     		tmp[0] = new Color(0, 0, 0);
-    		tmp[1] = new Color(0x7b8bff);
+    		tmp[1] = new Color(0x7b81ff);
     		tmp[2] = new Color(0x64f6e4);
     		tmp[3] = new Color(0x4eb2ff);
-    		tmp[4] = new Color(0x2879ff);
-    		tmp[5] = new Color(0x001ab9);
+    		tmp[4] = new Color(0x126dff);
+    		tmp[5] = new Color(0x1f7bcc);
     		tmp[6] = new Color(0x00b4ce);
     		tmp[7] = new Color(0xececec);
     	}
     	if (layoutStyle.equals("warm"))
     	{
     		tmp[0] = new Color(0, 0, 0);
-    		tmp[1] = new Color(0xce0054);
+    		tmp[1] = new Color(0xe5005c);
     		tmp[2] = new Color(0xffa87b);
     		tmp[3] = new Color(0xf664c3);
-    		tmp[4] = new Color(0xff4e5f);
+    		tmp[4] = new Color(0xff6574);
     		tmp[5] = new Color(0xff6c00);
     		tmp[6] = new Color(0xffb0bc);
     		tmp[7] = new Color(0xc74a0d);
