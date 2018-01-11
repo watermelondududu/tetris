@@ -66,10 +66,11 @@ public class controller {
 	
 	//initial board
 	public void start() {
-		if(isPaused())
-			return;
+		//if(isPaused())
+			//return;
 		timer.start();
 		isStarted = true;
+		isPaused=false;
 		isFallingFinished = false;
 		score = 0;
 		clearShapes();
