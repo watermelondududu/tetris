@@ -11,21 +11,22 @@ public class MyKeyAdapter extends KeyAdapter {
 		this.currentController = Controller;
 	}
 	public void keyPressed(KeyEvent e) {
-		if(!currentController.isStarted() || currentController.isCurrentPieceNoShaped()) {
+		int Key = e.getKeyCode();
+		
+		if(Key == 'r' || Key == 'R') {
+			currentController.start();
 			return;
 		}
 		
-		int Key = e.getKeyCode();
+		if(!currentController.isStarted() || currentController.isCurrentPieceNoShaped()) {
+			return;
+		}
 		
 		/*
 		 * 'P'/'p': pause
 		 */
 		if(Key == 'p' || Key == 'P') {
 			currentController.pause();
-			return;
-		}
-		if(Key == 'r' || Key == 'R') {
-			currentController.start();
 			return;
 		}
 		
