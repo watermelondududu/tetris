@@ -124,10 +124,6 @@ public class B10415034_DesignView extends JFrame implements DesignView {
 		return this;
 }
 	
-	public B10415034_DesignView(String layout) {
-		layoutStyle = layout;
-	}
-	
 	public void init() {
 		setLocationRelativeTo(this);
         getContentPane().add(View);
