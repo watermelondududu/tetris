@@ -144,9 +144,9 @@ public class B10413040_DesignView extends JFrame implements DesignView {
         		rdbtnBright.setSelected(false);
         		rdbtnCold.setSelected(false);
         		rdbtnWarm.setSelected(true);
-                panelForStatus.setBackground(new Color(0x832844));
+                panelForStatus.setBackground(new Color(0x731c36));
                 status.setForeground(new Color(0xffffff));
-                View.setBackground(new Color(0x832844));
+                View.setBackground(new Color(0x731c36));
         	}
         });
         mnLayoutStyle.add(rdbtnWarm);
