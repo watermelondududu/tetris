@@ -54,18 +54,6 @@ public class ShowView extends JPanel implements ActionListener {
 	
 	// draw this square
 	public void drawSquare(Graphics g, int x, int y, shape.Shapes shape) {
-//		DesignView tmp = new F10615006_DesignView();
-//		DesignView tmp = new B10413040_DesignView(layoutStyle);
-//		Color[] colors = new Color[8];
-//		
-//		//call getColors to fill colors of squares in the array colors[].
-//		colors = tmp.getColors();
-//		Color colors[] = { new Color(0, 0, 0), new Color(204, 102, 102), 
-//				new Color(102, 204, 102), new Color(102, 102, 204), 
-//				new Color(204, 204, 102), new Color(204, 102, 204),
-//				new Color(102, 204, 204), new Color(218, 170, 0)
-//		};
-		
 		colors = personaldesign.getColors();
 		
 		Color color = colors[shape.ordinal()];
