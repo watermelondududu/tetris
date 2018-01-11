@@ -27,17 +27,17 @@ public class B10415034_DesignView extends JFrame implements DesignView {
     private JLabel status;
     private ShowView View;
     private controller currentController;
-	private String layoutStyle = "dark";
+	private String layoutStyle = "yyyyy";
 
 	public B10415034_DesignView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         status = new JLabel("Terminated");
-        status.setFont(new Font("MV Boli", Font.PLAIN, 16));
+        status.setFont(new Font("Segoe Script", Font.PLAIN, 18));
         
         View = new ShowView(this);
         currentController = View.getController();
-        View.setBounds(0, 0, 200, 400);
-        View.setBackground(new Color(50, 50, 50));
+        View.setBounds(0, -16, 200, 400);
+        View.setBackground(Color.DARK_GRAY);
         getContentPane().add(View);
         
         View.setDesign(this);
@@ -45,7 +45,7 @@ public class B10415034_DesignView extends JFrame implements DesignView {
         JPanel panelForStatus = new JPanel();
         FlowLayout flowLayout = (FlowLayout) panelForStatus.getLayout();
         flowLayout.setAlignment(FlowLayout.RIGHT);
-        panelForStatus.setBounds(201, 0, 198, 31);
+        panelForStatus.setBounds(201, 0, 198, 39);
         getContentPane().add(panelForStatus);
         panelForStatus.add(status);
         
@@ -56,7 +56,7 @@ public class B10415034_DesignView extends JFrame implements DesignView {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         
-        JMenu mnGame = new JMenu("Game");
+        JMenu mnGame = new JMenu("Tetris");
         menuBar.add(mnGame);
         
         JMenuItem mntmRestart = new JMenuItem("New Game");
@@ -111,10 +111,10 @@ public class B10415034_DesignView extends JFrame implements DesignView {
         txtpnGameControls.setBackground(UIManager.getColor("Button.background"));
         txtpnGameControls.setFont(new Font("Yu Gothic", Font.PLAIN, 15));
         txtpnGameControls.setText("Game Control\n"+
-        		"Press \"¡ü\" to rotate.\nPress \"¡û/¡ú\" to move.\n"
-				+ "Press \"¡ý\" for soft drop.\nPress \"D\" for hard drop.\n"
+        		"Press \"up\" to rotate.\nPress \"left/right\" to move.\n"
+				+ "Press \"down\" for soft drop.\nPress \"D\" for hard drop.\n"
 				+ "Press \"P\" to pause .\nPress \"R\" to restart");
-        txtpnGameControls.setBounds(217, 64, 182, 193);
+        txtpnGameControls.setBounds(201, 64, 198, 193);
         getContentPane().add(txtpnGameControls);
         
         
@@ -136,7 +136,7 @@ public class B10415034_DesignView extends JFrame implements DesignView {
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-        setSize(416, 470);
+        setSize(418, 451);
         setVisible(true);
         setTitle("Tetris");
 	}
@@ -148,16 +148,16 @@ public class B10415034_DesignView extends JFrame implements DesignView {
     public 	Color[] getColors() {
     	Color[] tmp = new Color[8];
     	
-    	if (layoutStyle.equals("dark"))
+    	if (layoutStyle.equals("yyyyy"))
     	{
     		tmp[0] = new Color(0, 0, 0);
-    		tmp[1] = new Color(230, 230, 230);
-    		tmp[2] = new Color(240, 70, 120);
-    		tmp[3] = new Color(255, 250, 120);
-    		tmp[4] = new Color(125, 190, 250);
-    		tmp[5] = new Color(255, 148, 61);
-    		tmp[6] = new Color(113, 240, 163);
-    		tmp[7] = new Color(161, 102, 250);
+    		tmp[1] = new Color(255,128, 191);
+    		tmp[2] = new Color(186, 85, 211);
+    		tmp[3] = new Color(100, 149, 237);
+    		tmp[4] = new Color(0, 255, 128);
+    		tmp[5] = new Color(255, 255,77);
+    		tmp[6] = new Color(255, 179, 102);
+    		tmp[7] = new Color(102, 255, 230);
     	}
     
     	
