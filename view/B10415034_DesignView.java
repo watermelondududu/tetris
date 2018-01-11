@@ -27,7 +27,7 @@ public class B10415034_DesignView extends JFrame implements DesignView {
     private JLabel status;
     private ShowView View;
     private controller currentController;
-	private String layoutStyle = "yyyyy";
+	
 
 	public B10415034_DesignView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -148,8 +148,7 @@ public class B10415034_DesignView extends JFrame implements DesignView {
     public 	Color[] getColors() {
     	Color[] tmp = new Color[8];
     	
-    	if (layoutStyle.equals("yyyyy"))
-    	{
+    	
     		tmp[0] = new Color(0, 0, 0);
     		tmp[1] = new Color(255,128, 191);
     		tmp[2] = new Color(186, 85, 211);
@@ -158,8 +157,8 @@ public class B10415034_DesignView extends JFrame implements DesignView {
     		tmp[5] = new Color(255, 255,77);
     		tmp[6] = new Color(255, 179, 102);
     		tmp[7] = new Color(102, 255, 230);
-    	}
-    
+    	
+   
     	
 		return tmp;
     }
