@@ -66,8 +66,8 @@ public class controller {
 	
 	//initial board
 	public void start() {
-		//if(isPaused())
-			//return;
+
+		isPaused = false;
 		timer.start();
 		isStarted = true;
 		isPaused=false;
